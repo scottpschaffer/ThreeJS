@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SphereOrbitingSquare</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.js"></script>
+</head>
+<body>
+  <div id="WebGL-output"></div>
+
+  <script>
+    let camera;
+    let scene;
+    let renderer;
+
+    function init()
+    {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+      renderer = new THREE.WebGLRenderer();
+
+      renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.shadowMapEnabled = true;
+
+      let cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
+      let cubeMaterial = new THREE.MeshLambertMaterial({color: 0xff0000});
+      cubeMaterial.transparent = true;
+      cubeMaterial.opacity = .75;
+      let cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+      cube.castShadow = true;
+
+      cube.position.x = -4;
+      cube.position.y = 3;
+      cube.position.z = 0;
+
+      scene.add(cube);
+
+
+    }
+  </script>
+</body>
+</html>
